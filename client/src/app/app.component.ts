@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProduct } from './models/product';
-import { IPagination } from './models/pagination';
+import { IProduct } from './shared/models/product';
+import { IPagination } from './shared/models/pagination';
 
 
 @Component({
@@ -11,16 +11,8 @@ import { IPagination } from './models/pagination';
 })
 export class AppComponent implements OnInit{
   title = 'Online Store';
-  products: IProduct[];  // variable to hold products returned from API
-
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('https://localhost:5001/api/products?pagesize=50')
-      .subscribe((response: IPagination) => {
-        this.products = response.data;
-      }, error => {
-        console.log(error);
-      });
   }
 }
